@@ -1,0 +1,13 @@
+image: adstewart/dafny-gitpod:latest
+
+vscode:
+  extensions:
+    - dafny-lang.ide-vscode
+
+tasks:
+  - init: git config --global alias.slog 'log --pretty=oneline --abbrev-commit'
+  - init: git config --global alias.co checkout
+  - command: wget https://raw.githubusercontent.com/dafny-lang/dafny/master/docs/OnlineTutorial/guide.md
+  - command: gp open guide.md
+
+
