@@ -20,7 +20,7 @@ import sys
 try:
   repo_owner = os.environ["REPO_OWNER"]
 except KeyError:
-  repo_owner = "phlummox"
+  repo_owner = "arranstewart"
 
 try:
   image_name = os.environ["IMAGE_NAME"]
@@ -63,6 +63,9 @@ def verbose_run(cmd, **kwargs):
 cmd = ["docker", "pull", f"{gh_image_id}:{version}"]
 verbose_run(cmd, check=False)
 
+cmd = ["docker", "pull", f"{gh_image_id}:latest"]
+verbose_run(cmd, check=False)
+
 ## builder image
 #cmd = f"""docker build --pull -f Dockerfile --target builder
 #  --cache-from {gh_image_id}:{version}-builder
@@ -70,11 +73,12 @@ verbose_run(cmd, check=False)
 #
 #verbose_run(cmd, check=True)
 
-dockerfile=".gitpod.Dockerfile"
+dockerfile="Dockerfile"
 
 # main image
 cmd = f"""docker build --pull -f {dockerfile}
   --cache-from {gh_image_id}:{version}-builder
+  --cache-from {gh_image_id}:latest
   --cache-from {gh_image_id}:{version}
   -t {gh_image_id}:{version}""".split()
 

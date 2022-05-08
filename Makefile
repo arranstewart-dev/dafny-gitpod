@@ -16,7 +16,7 @@ REPO=adstewart
 
 IMAGE_NAME=dafny-gitpod
 
-IMAGE_VERSION=0.1.0
+IMAGE_VERSION=0.1.1
 
 print-image-name:
 	@echo $(IMAGE_NAME)
@@ -38,7 +38,7 @@ print-docker-hub-image:
 
 docker-build:
 	docker build \
-		-f .gitpod.Dockerfile $(TAGS_TO_ADD) $(TAGS_IN) \
+		-f Dockerfile $(TAGS_TO_ADD) $(TAGS_IN) \
 		-t $(REPO)/$(IMAGE_NAME):$(IMAGE_VERSION) .
 
 docker-shell:

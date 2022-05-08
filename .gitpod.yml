@@ -1,4 +1,5 @@
-image: adstewart/dafny-gitpod:latest
+image:
+  file: .gitpod.Dockerfile
 
 vscode:
   extensions:
