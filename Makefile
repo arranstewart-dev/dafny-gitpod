@@ -41,10 +41,6 @@ docker-build:
 		-f .gitpod.Dockerfile $(TAGS_TO_ADD) $(TAGS_IN) \
 		-t $(REPO)/$(IMAGE_NAME):$(IMAGE_VERSION) .
 
-DEVICES = --device /dev/kvm:/dev/kvm \
-		--device /dev/dri:/dev/dri \
-		-v /tmp/.X11-unix:/tmp/.X11-unix
-
 docker-shell:
 	docker -D run -e DISPLAY -it --rm  --net=host  \
 		-v $$PWD:/work --workdir=/work \
